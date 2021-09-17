@@ -72,6 +72,26 @@ public class Main {
         Collections.sort(temp);
         return Collections.frequency(temp, temp.get(temp.size()-1));
     }
+    public static List<Integer> gradingStudents(List<Integer> grades) {
+        // Write your code here
+        List<Integer> result = new ArrayList<>();
+        for(Integer i : grades)
+        {
+            if(i%5 == 0)
+                result.add(i);
+            else
+            {
+                if(i<38)
+                    result.add(i);
+                else if(i%5 >= 3) //important cause we are taking values for the next multiple of 5
+                    result.add(5*(i/5 + 1));
+                else
+                    result.add(i);
+            }
+        }
+        return result;
+
+    }
 
     public static void main(String[] args)
     {
@@ -83,11 +103,16 @@ public class Main {
 
 //        staircase(6);
 
-        List<Integer> arr = new ArrayList<>();
-        arr.add(3);
-        arr.add(2);
-        arr.add(1);
-        arr.add(3);
-        System.out.println(birthdayCakeCandles(arr));
+//        List<Integer> arr = new ArrayList<>();
+//        arr.add(3);
+//        arr.add(2);
+//        arr.add(1);
+//        arr.add(3);
+//        System.out.println(birthdayCakeCandles(arr));
+
+//        int[][] arr = {
+//                {0,2,10}
+//        };
+//        getSequence(arr);
     }
 }
