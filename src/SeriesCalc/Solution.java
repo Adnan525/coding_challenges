@@ -46,7 +46,7 @@ class Solution{
             int n = in.nextInt();
             list.add(Arrays.asList(new Integer[]{a,b,n}));
         }
-        getSequence(list);
         in.close();
+        getSequence(list);
     }
 }

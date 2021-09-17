@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Main {
 
@@ -91,6 +88,59 @@ public class Main {
         }
         return result;
 
+    }
+
+    public static void countApplesAndOranges(int s, int t, int a, int b, List<Integer> apples, List<Integer> oranges) {
+        //range would be inclusive s and t
+        //a: pos of apple tree
+        //b: pos of orange tress
+        int apple = 0;
+        int orange = 0;
+        for(Integer i:apples)
+        {
+            if(i>=0)
+            {
+                int position = a+i;
+                if(position>=s && position<=t)
+                    apple+=1;
+            }
+        }
+        for(Integer i:oranges)
+        {
+            if(i<=0)
+            {
+                int position = b+i;
+                if(position>=s && position<=t)
+                    orange+=1;
+            }
+        }
+        System.out.println(apple+"\n"+orange);
+
+    }
+    public static List<Integer> breakingRecords(List<Integer> scores) {
+        // Write your code here
+        int breakBest = 0;
+        int breakWorst = 0;
+        if(scores.isEmpty())
+            return Arrays.asList(new Integer[] {0,0});
+        else{
+            int best = scores.get(0);
+            int worst = scores.get(0);
+            for(Integer i : scores)
+            {
+                if(i>best)
+                {
+                    best = i;
+                    breakBest++;
+                }
+                else if(i<worst)
+                {
+                    worst = i;
+                    breakWorst++;
+                }
+            }
+        }
+        return Arrays.asList(new Integer[]{breakBest, breakWorst});
     }
 
     public static void main(String[] args)
