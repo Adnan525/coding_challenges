@@ -1,3 +1,5 @@
+import java.text.NumberFormat;
+import java.time.LocalDate;
 import java.util.*;
 
 public class Main {
@@ -142,6 +144,55 @@ public class Main {
         }
         return Arrays.asList(new Integer[]{breakBest, breakWorst});
     }
+    public static String findDay(int month, int day, int year) {
+        LocalDate date = LocalDate.of(year, month, day);
+        return date.getDayOfWeek().toString();
+    }
+
+    public static void useOfNumberFormatter(double payment)
+    {
+        NumberFormat usf = NumberFormat.getCurrencyInstance();
+        String us = usf.format(payment);
+        NumberFormat inf = NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
+        String india = inf.format(payment);
+        NumberFormat chf = NumberFormat.getCurrencyInstance(Locale.CHINA);
+        String china = chf.format(payment);
+        NumberFormat frf = NumberFormat.getCurrencyInstance(Locale.FRANCE);
+        String france = frf.format(payment);
+    }
+
+    public static String timeConversion(String s) {
+        // assuming s is a valid time string
+        Integer target = Integer.parseInt(s.substring(0, 2));
+        String milFormat = ""; //the first 2 digits
+        if(s.substring(s.length()-2, s.length()).equals("AM"))
+        {
+            if(target == 12)
+                return "00" + s.substring(2, s.length()-2);
+            else
+                return s.substring(0, s.length()-2);
+        }
+        else
+        {
+            if(target == 12)
+                return s.substring(0, s.length()-2);
+            else
+            {
+                Integer temp = 12+target;
+                milFormat = temp.toString();
+                return milFormat+s.substring(2, s.length()-2);
+            }
+        }
+
+    }
+    static String catAndMouse(int x, int y, int z) {
+        if(Math.abs(x-z)<Math.abs(y-z))
+            return "Cat A";
+        else if(Math.abs(y-z)<Math.abs(x-z))
+            return "Cat B";
+        else
+            return "Mouse C";
+    }
 
     public static void main(String[] args)
     {
@@ -164,5 +215,16 @@ public class Main {
 //                {0,2,10}
 //        };
 //        getSequence(arr);
+//        String A = "hello";
+//        String B = "java";
+//
+//        System.out.println(A.length()+B.length());
+//        if(B.compareTo(A)<0)
+//            System.out.println("Yes");
+//        else
+//            System.out.println("No");
+//        System.out.println(A.substring(0,1).toUpperCase(Locale.ROOT)+A.substring(1, A.length()) + " "+B.substring(0,1).toUpperCase(Locale.ROOT)+B.substring(1, B.length()));
+
+
     }
 }
