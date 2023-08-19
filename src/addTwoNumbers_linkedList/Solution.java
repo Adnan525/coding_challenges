@@ -22,16 +22,15 @@ public class Solution{
         while(result != 0){
             int val = result % 10;
             result = result/10;
-            if (result == 0){
-                temp = new ListNode(val);
-            }
-            else{
-                temp = new ListNode(val, emptyLn);
-            }
             if(counter == 0){
+                temp = new ListNode(val, emptyLn);
                 head = temp;
             }
-            temp = temp.next;
+            else{
+                temp = temp.next;
+                temp.val= val;
+                temp.next = (result == 0) ? null : emptyLn;
+            }
             counter+=1;
         }
         return head;
