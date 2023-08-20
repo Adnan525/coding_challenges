@@ -2,6 +2,14 @@ package longestSubStringNoRepeat;
 
 public class LongestSub {
     public int sublength(String s){
+
+        //checks
+        if(s.length() == 0)
+            return 0;
+        else if(s.length() == 1)
+            return 1;
+
+        //test
         String temp = "";
         int longLength = 0;
         for(int i = 0; i < s.length(); i++)
