@@ -10,7 +10,7 @@ public class Main {
         ListNode five = new ListNode(5, six);
 
         ListNode result = Solution.addTwoNumbers(five, two);
-        System.out.println(result.val);
+        System.out.println(result.next.val);
 
     }
     

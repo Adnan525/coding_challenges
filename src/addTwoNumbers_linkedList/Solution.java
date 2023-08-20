@@ -1,10 +1,12 @@
+import java.math.BigInteger;
+
 public class Solution{
     public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         String str1 = "";
         String str2 = "";
         ListNode head = new ListNode(); //will return this
         ListNode temp = new ListNode(); // this will keep changing in each iteration
-        ListNode emptyLn = new ListNode();
+        ListNode emptyNode = new ListNode(-1);
         while(l1.next != null)
         {
             str1 = Integer.toString(l1.val) + str1;
@@ -17,19 +19,23 @@ public class Solution{
             l2 = l2.next;
         }
         str2 = l2.val + str2;
-        int result = Integer.parseInt(str1) + Integer.parseInt(str2);
+
+        BigInteger s1 = new BigInteger(str1);
+        BigInteger result = s1.add(new BigInteger(str2));
         int counter = 0;
-        while(result != 0){
-            int val = result % 10;
-            result = result/10;
+        while(result.intValue() != 0){
+            int val = result.mod(BigInteger.valueOf(10)).intValue();
+            result = result.divide(BigInteger.valueOf(10));
             if(counter == 0){
-                temp = new ListNode(val, emptyLn);
-                head = temp;
+                head = new ListNode(val, null);
             }
             else{
-                temp = temp.next;
-                temp.val= val;
-                temp.next = (result == 0) ? null : emptyLn;
+                temp = new ListNode(val, null);
+                temp = head;
+                while(temp.next != null){
+                    temp = temp.next;
+                }
+                temp.next = new ListNode(val, null);
             }
             counter+=1;
         }
