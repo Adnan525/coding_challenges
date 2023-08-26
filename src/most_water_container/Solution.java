@@ -2,16 +2,16 @@ package most_water_container;
 class Solution {
 
     public int maxArea(int[] height) {
-        int i = 0;
-        int j = height.length -1;
         int maxArea = 0;
-        while(i !=j)
+        for(int i = 0; i<height.length; i++)
         {
-            int area = (height[i] < height[j]) ? height[i] * (j - i) : height[j] * (j - i);
-            if(area>maxArea)
-                maxArea = area;
-            i++;
-            j--;
+            int tempX = height[i];
+            for(int j = height.length -1; j>i; j--)
+            {
+                int area = (tempX < height[j]) ? (j-i) * tempX : (j-i) * height[j];
+                if (area > maxArea)
+                    maxArea = area;
+            }
         }
         return maxArea;
         
