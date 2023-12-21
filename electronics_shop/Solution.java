@@ -1,27 +1,33 @@
 package electronics_shop;
 
 import java.io.*;
-import java.math.*;
-import java.text.*;
 import java.util.*;
-import java.util.regex.*;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
+
 
 public class Solution {
 
-    /*
-     * Complete the getMoneySpent function below.
-     */
     static int getMoneySpent(int[] keyboards, int[] drives, int b) {
+        // IntStream from Arrays.stream(keyboards) requires a conversion to Stream<Integer> before using the sorted method.
+        // but if the loop operates directly on Stream<Integer> which is achieved via Arrays.asList(drives).asList(),there's no need for an additional conversion.
         List<Integer> affordable_usb = Arrays.stream(keyboards)
                 .flatMap(k -> Arrays.stream(drives).map(d -> k + d))
                 .filter(u -> u <= b)
                 .boxed()  // Convert IntStream to Stream<Integer>
-                .sorted(java.util.Comparator.reverseOrder())
+                .sorted(java.util.Comparator.reverseOrder()) // can be appied only on Stream<t>
                 .collect(Collectors.toList());
 
         return affordable_usb.isEmpty() ? -1 : affordable_usb.get(0);
+
+        // alternative
+        // List<Integer> affordable_usb = new ArrayList<>();
+        // for (int k : keyboards) {
+        //     int remain_for_usb = b - k;
+        //     affordable_usb = Arrays.asList(b).stream()
+        //             .filter(u -> u <= remain_for_usb)
+        //             .map(u -> u + k)
+        //             .sorted(java.util.Comparator.reverseOrder())
+        //             .collect(Collectors.toList());
     }
 
     private static final Scanner scanner = new Scanner(System.in);
