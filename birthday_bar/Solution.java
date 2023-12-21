@@ -24,7 +24,7 @@ class Result {
      *  3. INTEGER m
      */
 
-     public static int get_inner_sum(List<Integer> a, int start, int step){
+    public static int get_inner_sum(List<Integer> a, int start, int step){
         return IntStream.range(start, start + step)
                 // map(a::get) is a shorthand for converting each index i to the corresponding value in the list a at that index. 
                 // It is equivalent to using a lambda expression like map(i -> a.get(i))
