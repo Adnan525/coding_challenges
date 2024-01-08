@@ -1,15 +1,12 @@
 package pdf_viewer;
 import java.io.*;
 import java.math.*;
-import java.security.*;
 import java.text.*;
 import java.util.*;
-import java.util.concurrent.*;
-import java.util.function.*;
-import java.util.regex.*;
 import java.util.stream.*;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
+import java.util.List;
 
 class Result {
 
@@ -33,12 +30,19 @@ class Result {
         return height * (word.length());
 
     }
+    //using stream api
+    public static int designerPdfViewer_stream(List<Integer> h, String word){
+        return word.chars()
+                .map(c -> h.get((int) c - 97))
+                .max() 
+                .orElse(0) * word.length();
+    }
 
 }
 
 public class Solution {
     public static void main(String[] args) throws IOException {
-        int val = Result.designerPdfViewer(List.of(1, 3, 1, 3, 1, 4, 1, 3, 2, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5), 
+        int val = Result.designerPdfViewer_stream(List.of(1, 3, 1, 3, 1, 4, 1, 3, 2, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5), 
         "abc");
         System.out.println(val);
     }
